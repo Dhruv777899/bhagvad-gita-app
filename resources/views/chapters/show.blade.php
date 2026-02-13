@@ -29,6 +29,15 @@
                             <p class="font-serif text-2xl md:text-3xl text-gray-800 leading-relaxed">
                                 {!! nl2br(e($verse->text)) !!}
                             </p>
+                            
+                            <!-- Simple English Translation -->
+                            <div class="bg-orange-50/30 p-6 rounded-xl border-l-4 border-saffron">
+                                <h4 class="text-xs uppercase tracking-widest text-saffron font-bold mb-2">Translation</h4>
+                                <p class="text-gray-800 text-lg leading-relaxed font-medium italic">
+                                    "{{ $verse->translation }}"
+                                </p>
+                            </div>
+
                             <div class="bg-white/50 p-6 rounded-xl border border-orange-50/50">
                                 <p class="text-gray-500 italic text-lg leading-relaxed mb-4">
                                     {!! nl2br(e($verse->transliteration)) !!}
