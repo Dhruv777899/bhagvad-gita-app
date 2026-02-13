@@ -48,7 +48,7 @@
             </div>
 
             <div class="text-center">
-                <a href="#" class="inline-flex items-center px-8 py-4 bg-saffron text-white font-semibold rounded-full hover:bg-orange-800 transition-colors shadow-lg shadow-orange-200 uppercase tracking-widest text-sm">
+                <a href="{{ route('chapters.index') }}" class="inline-flex items-center px-8 py-4 bg-saffron text-white font-semibold rounded-full hover:bg-orange-800 transition-colors shadow-lg shadow-orange-200 uppercase tracking-widest text-sm">
                     Begin Journey
                 </a>
             </div>
