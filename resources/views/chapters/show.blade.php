@@ -18,37 +18,19 @@
             </div>
 
             <!-- Verses -->
-            <div class="space-y-12">
+            <div class="space-y-6">
                 @foreach($chapter->verses as $verse)
-                    <div class="relative pl-8">
-                        <div class="absolute left-0 top-0 bottom-0 w-1 bg-saffron rounded-full opacity-20"></div>
-                        <div class="mb-4">
-                            <span class="text-saffron font-serif font-bold text-lg">॥ {{ $chapter->chapter_number }}.{{ $verse->verse_number }} ॥</span>
-                        </div>
-                        <div class="space-y-6">
-                            <p class="font-serif text-2xl md:text-3xl text-gray-800 leading-relaxed">
-                                {!! nl2br(e($verse->text)) !!}
-                            </p>
-                            
-                            <!-- Simple English Translation -->
-                            <div class="bg-orange-50/30 p-6 rounded-xl border-l-4 border-saffron">
-                                <h4 class="text-xs uppercase tracking-widest text-saffron font-bold mb-2">Translation</h4>
-                                <p class="text-gray-800 text-lg leading-relaxed font-medium italic">
-                                    "{{ $verse->translation }}"
-                                </p>
+                    <a href="{{ route('verses.show', [$chapter, $verse]) }}" class="group block bg-white p-6 rounded-2xl shadow-sm border border-orange-50 hover:border-saffron transition-all hover:shadow-md">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-saffron font-serif font-bold text-lg">॥ {{ $chapter->chapter_number }}.{{ $verse->verse_number }} ॥</span>
+                                <p class="text-gray-600 line-clamp-1 italic">{{ $verse->translation }}</p>
                             </div>
-
-                            <div class="bg-white/50 p-6 rounded-xl border border-orange-50/50">
-                                <p class="text-gray-500 italic text-lg leading-relaxed mb-4">
-                                    {!! nl2br(e($verse->transliteration)) !!}
-                                </p>
-                                <div class="text-gray-600 leading-relaxed">
-                                    <strong class="text-charcoal block mb-2">Word Meanings:</strong>
-                                    {!! nl2br(e($verse->word_meanings)) !!}
-                                </div>
-                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-200 group-hover:text-saffron transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             
