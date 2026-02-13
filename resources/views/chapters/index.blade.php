@@ -1,26 +1,32 @@
-<x-guest-layout>
-    <div class="py-12 bg-parchment min-h-screen">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-serif text-4xl text-charcoal font-bold mb-2">The Chapters</h2>
-                <p class="text-gray-500 italic">Select a chapter to begin your contemplation</p>
-            </div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-serif text-3xl text-gray-800 leading-tight text-center">
+            {{ __('Divine Chapters') }}
+        </h2>
+    </x-slot>
 
+    <div class="py-12 bg-parchment min-h-screen">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($chapters as $chapter)
-                    <a href="{{ route('chapters.show', $chapter) }}" class="group bg-white p-8 rounded-2xl border border-orange-50 shadow-sm hover:shadow-xl hover:border-saffron transition-all duration-300 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 text-orange-100 font-serif text-6xl group-hover:text-orange-200 transition-colors">
-                            {{ $chapter->chapter_number }}
-                        </div>
-                        
-                        <div class="relative z-10">
-                            <span class="text-saffron font-semibold tracking-widest text-xs uppercase block mb-2">Chapter {{ $chapter->chapter_number }}</span>
-                            <h3 class="font-serif text-2xl text-charcoal mb-4">{{ $chapter->name_transliterated }}</h3>
-                            <p class="text-gray-600 line-clamp-3 text-sm leading-relaxed mb-6">{{ $chapter->summary }}</p>
+                @foreach($chapters as $chapter)
+                    <a href="{{ route('chapters.show', $chapter) }}" class="group block bg-white overflow-hidden shadow-sm hover:shadow-md rounded-2xl border border-orange-50 transition-all transform hover:-translate-y-1">
+                        <div class="p-8 relative">
+                            <div class="absolute top-4 right-6 text-orange-200 font-serif text-4xl group-hover:text-saffron transition-colors">
+                                {{ str_pad($chapter->chapter_number, 2, '0', STR_PAD_LEFT) }}
+                            </div>
+                            <h3 class="font-serif text-2xl text-gray-800 mb-1">{{ $chapter->name }}</h3>
+                            <p class="text-saffron font-medium mb-4 text-sm tracking-widest uppercase">{{ $chapter->name_transliterated }}</p>
+                            <p class="text-gray-500 text-sm italic mb-6 line-clamp-2">{{ $chapter->name_translated }}</p>
                             
-                            <div class="flex items-center text-saffron text-sm font-bold uppercase tracking-wider">
-                                <span>{{ $chapter->verses_count }} Verses</span>
-                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7"></path></svg>
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="bg-orange-50 text-saffron text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-tighter">
+                                    {{ $chapter->verses_count }} Verses
+                                </span>
+                                <span class="text-saffron group-hover:translate-x-2 transition-transform">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
                             </div>
                         </div>
                     </a>
@@ -28,4 +34,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>
